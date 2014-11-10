@@ -12,10 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define 'centos6' do |centos6|
     centos6.vm.provider "docker" do |d|
-      d.image           = 'centos:centos6'
-      #d.has_ssh         = true
-      #d.remains_running = true
-      d.cmd = [ "ls" ]
+      d.build_dir        = '.'
     end
   end
 
