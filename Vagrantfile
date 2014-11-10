@@ -7,8 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.ssh.username = 'root'
-  config.ssh.password = 'chpasswd'
+  config.vm.synced_folder 'scratch_a/', '/scratch_a'
 
   config.vm.define 'centos6' do |centos6|
     centos6.vm.provider "docker" do |d|
