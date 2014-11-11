@@ -7,6 +7,5 @@ RUN yum install -y install \
     openssh-server
 RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
 RUN /etc/init.d/sshd start
-RUN /etc/init.d/sshd stop
 RUN echo 'root:changeme'|chpasswd
 CMD cat /etc/redhat-release

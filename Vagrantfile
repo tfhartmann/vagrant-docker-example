@@ -3,8 +3,7 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
-
-ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+ENV['VAGRANT_DEFAULT_PROVIDER'] ||='docker'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.username = 'root'
@@ -13,9 +12,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder 'scratch_b/', '/scratch_b'
   config.vm.synced_folder 'data/', '/data'
 
+  # Centos5
+  config.vm.define 'centos5' do |centos5|
+    centos5.vm.provider 'docker' do |d|
+      d.build_dir = 'centos5/'
+      d.has_ssh   = true
+      d.cmd       = [ '/usr/sbin/sshd', '-D']
+    end
+  end
+  # Centos6
   config.vm.define 'centos6' do |centos6|
-    centos6.vm.provider "docker" do |d|
-      d.build_dir = '.'
+    centos6.vm.provider 'docker' do |d|
+      d.build_dir = 'centos6/'
       d.has_ssh   = true
       d.cmd       = [ '/usr/sbin/sshd', '-D']
     end
