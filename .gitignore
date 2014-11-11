@@ -3,3 +3,6 @@ modules
 .librarian
 .tmp
 *.swp
+scratch_a/
+scratch_b/
+data/
