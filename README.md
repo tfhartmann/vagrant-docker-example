@@ -32,3 +32,12 @@ You could also run
 sudo usermod -a -G docker $USER
 ```
 
+You should end up with something like this
+
+```Puppet
+user { 'tfhartmann':
+  ensure => 'present',
+  groups => ['adm', 'cdrom', 'sudo', 'dip', 'plugdev', 'lpadmin', 'sambashare', 'docker', 'libvirtd'],
+}
+```
+
